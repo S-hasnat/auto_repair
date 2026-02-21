@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLACK&GOLD · atelier | prestige auto care</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Outfit (modern geometric) + Cinzel for gold accent -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- RESET / BASE : black & gold ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #0b0a0a;   /* deep black background */
+      color: #e5e5e5;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* golden accents throughout */
+    .gold {
+      color: #D4AF37;
+    }
+    .bg-gold {
+      background-color: #D4AF37;
+      color: #0b0a0a;
+    }
+    .border-gold {
+      border-color: #D4AF37;
+    }
+
+    /* typography */
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .section-title {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.1;
+      background: linear-gradient(130deg, #fff8e7, #D4AF37 70%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .gold-underline {
+      width: 100px;
+      height: 4px;
+      background: #D4AF37;
+      margin: 1.5rem 0 2.5rem 0;
+    }
+
+    /* container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ---------- NAVBAR (black / gold) ---------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      z-index: 1000;
+      padding: 0.8rem 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      background: linear-gradient(145deg, #f9e6b3, #D4AF37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 3px;
+    }
+    .logo span {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      display: block;
+      letter-spacing: 4px;
+      color: #9e8b5f;
+      -webkit-text-fill-color: #9e8b5f;
+    }
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 1.5px;
+      transition: color 0.3s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+    .nav-links a:hover {
+      color: #D4AF37;
+      border-bottom-color: #D4AF37;
+    }
+
+    /* ---------- HERO CAROUSEL (full bleed) ---------- */
+    .carousel {
+      height: 100vh;
+      min-height: 700px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin-top: 0;
+    }
+    .carousel-slides {
+      display: flex;
+      height: 100%;
+      width: 300%; /* 3 slides */
+      animation: slide 24s infinite ease-in-out;
+    }
+    .slide {
+      width: 33.333%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+    /* HD images (high quality placeholders with automotive luxury) */
+    .slide1 { background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/3806245/pexels-photo-3806245.jpeg?auto=compress&cs=tinysrgb&w=1600'); }
+    .slide2 { background-image: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=1600'); }
+    .slide3 { background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1600'); }
+
+    .slide-content {
+      position: absolute;
+      bottom: 20%;
+      left: 8%;
+      max-width: 700px;
+    }
+    .slide-content h2 {
+      font-size: 5rem;
+      font-weight: 900;
+      color: white;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.7);
+      line-height: 1;
+    }
+    .slide-content .golden-tag {
+      font-size: 1.5rem;
+      color: #D4AF37;
+      font-weight: 300;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .slide-content p {
+      font-size: 1.3rem;
+      color: #f0f0f0;
+      max-width: 600px;
+      text-shadow: 0 2px 5px black;
+    }
+
+    @keyframes slide {
+      0%, 25% { transform: translateX(0); }
+      33.33%, 58.33% { transform: translateX(-33.333%); }
+      66.66%, 91.66% { transform: translateX(-66.666%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* carousel navigation indicators (gold) */
+    .carousel-indicators {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: 20;
+    }
+    .indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid transparent;
+    }
+    .indicator.active {
+      background: #D4AF37;
+      box-shadow: 0 0 20px #D4AF37;
+      transform: scale(1.3);
+    }
+
+    /* ---------- WHATSAPP FIXED BUTTON (gold & black) ---------- */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      background: #D4AF37;
+      color: #000;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.6), 0 0 0 2px rgba(212,175,55,0.5);
+      transition: 0.25s;
+      z-index: 1000;
+      text-decoration: none;
+    }
+    .whatsapp-float:hover {
+      background: #bf9f30;
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 25px 40px black;
+    }
+    /* second inline WA button (black/gold) */
+    .btn-wa {
+      background: transparent;
+      border: 2px solid #D4AF37;
+      color: #D4AF37;
+      padding: 1rem 2.5rem;
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      transition: 0.3s;
+      font-size: 1.1rem;
+    }
+    .btn-wa i {
+      font-size: 1.6rem;
+    }
+    .btn-wa:hover {
+      background: #D4AF37;
+      color: black;
+      border-color: #D4AF37;
+    }
+
+    /* ---------- SERVICE SECTIONS (black/gold) ---------- */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      margin: 4rem 0;
+    }
+    .service-card {
+      background: #1a1a1a;
+      border: 1px solid #3a3a3a;
+      border-radius: 40px;
+      padding: 3rem 2rem;
+      transition: all 0.3s;
+      box-shadow: 0 20px 30px -20px black;
+      text-align: center;
+    }
+    .service-card:hover {
+      border-color: #D4AF37;
+      transform: translateY(-12px);
+      box-shadow: 0 30px 40px -15px #D4AF3720;
+    }
+    .service-icon {
+      font-size: 4rem;
+      color: #D4AF37;
+      margin-bottom: 1.5rem;
+    }
+    .service-card h3 {
+      font-size: 2.2rem;
+      color: white;
+    }
+    .service-card p {
+      color: #b5b5b5;
+    }
+
+    /* features / stats */
+    .stats-row {
+      display: flex;
+      gap: 2rem;
+      justify-content: space-around;
+      background: #0f0f0f;
+      border-radius: 90px;
+      padding: 2.5rem;
+      border: 1px solid #D4AF3733;
+      margin: 5rem 0;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #D4AF37;
+    }
+    .stat-label {
+      color: #ccc;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* team */
+    .team-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .team-card {
+      background: #191919;
+      padding: 2rem 2rem 2.5rem;
+      border-radius: 50px;
+      border: 1px solid #3a2e18;
+      flex: 1 1 220px;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .team-card:hover {
+      border-color: #D4AF37;
+    }
+    .team-avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: #2e2b24;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: #D4AF37;
+      border: 2px solid #D4AF37;
+    }
+
+    /* GOOGLE MAP (emulated with iframe) */
+    .map-container {
+      width: 100%;
+      height: 380px;
+      border-radius: 40px;
+      overflow: hidden;
+      border: 3px solid #D4AF37;
+      box-shadow: 0 30px 30px -10px black;
+      margin: 3rem 0;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      filter: grayscale(0.9) contrast(1.2) brightness(0.7) sepia(0.4) hue-rotate(5deg);
+    }
+
+    /* contact panel */
+    .contact-panel {
+      background: #111;
+      border-radius: 60px;
+      padding: 3.5rem;
+      border: 1px solid #53441f;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+    .contact-details i {
+      color: #D4AF37;
+      width: 2rem;
+      font-size: 1.5rem;
+    }
+    .contact-details p {
+      margin: 1.5rem 0;
+    }
+
+    .footer {
+      background: #050505;
+      padding: 3rem 0;
+      margin-top: 5rem;
+      border-top: 2px solid #D4AF37;
+      color: #a9a9a9;
+    }
+
+    /* responsiveness */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .slide-content h2 { font-size: 3rem; }
+      .section-title { font-size: 2.5rem; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FIXED WHATSAPP (gold) -->
+  <a href="https://wa.me/12345678900?text=Hello%20Black%26Gold%20Atelier%2C%20I%20need%20an%20appointment%20for%20my%20vehicle." 
+     class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- BLACK / GOLD NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <div class="logo">BLACK&GOLD<span>AUTO ATELIER</span></div>
+      <div class="nav-links">
+        <a href="#">HOME</a>
+        <a href="#services">SERVICES</a>
+        <a href="#team">TEAM</a>
+        <a href="#contact">CONTACT</a>
+      </div>
+      <a href="#contact" style="background: transparent; border: 1.5px solid #D4AF37; color: #D4AF37; padding: 0.6rem 1.8rem; border-radius: 40px; text-decoration: none; font-weight: 600;">BOOK</a>
+    </div>
+  </nav>
+
+  <!-- HERO CAROUSEL (full bleed) -->
+  <section class="carousel">
+    <div class="carousel-slides">
+      <div class="slide slide1">
+        <div class="slide-content">
+          <div class="golden-tag">— SINCE 1987 —</div>
+          <h2>PRESTIGE <br>REPAIR</h2>
+          <p>Only black & gold standard · certified master technicians</p>
+        </div>
+      </div>
+      <div class="slide slide2">
+        <div class="slide-content">
+          <div class="golden-tag">— HYPER CAR READY —</div>
+          <h2>DIAGNOSTICS <br>4.0</h2>
+          <p>AI‑assisted · 48h express for luxury & EV</p>
+        </div>
+      </div>
+      <div class="slide slide3">
+        <div class="slide-content">
+          <div class="golden-tag">— 24K GOLD CARE —</div>
+          <h2>CONCIERGE <br>SERVICE</h2>
+          <p>WhatsApp priority · valet & insurance handled</p>
+        </div>
+      </div>
+    </div>
+    <!-- simple indicators (visual only) -->
+    <div class="carousel-indicators">
+      <span class="indicator active"></span>
+      <span class="indicator"></span>
+      <span class="indicator"></span>
+    </div>
+  </section>
+
+  <!-- SERVICES section with fa fa icons -->
+  <section id="services" class="container" style="padding: 6rem 0 2rem;">
+    <h2 class="section-title">MECHANICAL <span class="gold">//</span> ELECTRICAL</h2>
+    <div class="gold-underline"></div>
+    <div class="service-grid">
+      <div class="service-card"><i class="fas fa-tachometer-alt service-icon"></i><h3>PERFORMANCE</h3><p>Engine / ECU tuning · dyno</p></div>
+      <div class="service-card"><i class="fas fa-bolt service-icon"></i><h3>EV & HYBRID</h3><p>Battery · inverter · software</p></div>
+      <div class="service-card"><i class="fas fa-oil-can service-icon"></i><h3>FLUID SURGERY</h3><p>Full synthetic · ceramic coating</p></div>
+      <div class="service-card"><i class="fas fa-brake-warning service-icon"></i><h3>BRAKE BY WIRE</h3><p>Carbon ceramic · ADAS calib.</p></div>
+      <div class="service-card"><i class="fas fa-snowplow service-icon"></i><h3>THERMAL</h3><p>AC · battery cooling</p></div>
+      <div class="service-card"><i class="fas fa-microchip service-icon"></i><h3>CODING</h3><p>Module flash · immobilizer</p></div>
+    </div>
+
+    <!-- stats gold -->
+    <div class="stats-row">
+      <div class="stat-item"><span class="stat-number">28</span><span class="stat-label">MASTER TECHS</span></div>
+      <div class="stat-item"><span class="stat-number">950+</span><span class="stat-label">EV REPAIRS</span></div>
+      <div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label">GOLD SUPPORT</span></div>
+    </div>
+  </section>
+
+  <!-- TEAM section (black/gold) -->
+  <section id="team" style="background: #0d0d0d; padding: 5rem 0;">
+    <div class="container">
+      <h2 class="section-title">THE <span class="gold">·</span> GUILD</h2>
+      <div class="gold-underline"></div>
+      <div class="team-grid">
+        <div class="team-card"><div class="team-avatar"><i class="fas fa-user-astronaut"></i></div><h3 style="color:white;">ELENA VOLT</h3><p style="color:#D4AF37;">EV master</p></div>
+        <div class="team-card"><div class="team-avatar"><i class="fas fa-user-ninja"></i></div><h3 style="color:white;">MARCUS BLACK</h3><p style="color:#D4AF37;">engine specialist</p></div>
+        <div class="team-card"><div class="team-avatar"><i class="fas fa-user-cog"></i></div><h3 style="color:white;">C. GOLDSTEIN</h3><p style="color:#D4AF37;">ADAS / calib.</p></div>
+        <div class="team-card"><div class="team-avatar"><i class="fas fa-user-tie"></i></div><h3 style="color:white;">OMAR SAID</h3><p style="color:#D4AF37;">concierge</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT + GOOGLE MAP + WHATSAPP MESSAGE (inline) -->
+  <section id="contact" class="container" style="padding: 5rem 0;">
+    <h2 class="section-title">GOLD LINE</h2>
+    <div class="gold-underline"></div>
+
+    <!-- google map embed (real interactive map) -->
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-73.98510768459423!3d40.748569979327874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1617991735468!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <!-- contact panel with extra WA link -->
+    <div class="contact-panel">
+      <div class="contact-details" style="flex:2;">
+        <p><i class="fas fa-map-pin gold"></i>   88 GOLDEN ALLEY, NEW YORK, NY 10001</p>
+        <p><i class="fas fa-phone-alt gold"></i>   +1 (212) 555‑9494</p>
+        <p><i class="fab fa-whatsapp gold"></i>   +1 (212) 555‑9494 (WHATSAPP PRIORITY)</p>
+        <p><i class="fas fa-envelope gold"></i>   concierge@blackandgold.auto</p>
+        <p><i class="fas fa-clock gold"></i>   MON‑SAT 8AM–8PM · SUN (VIP only)</p>
+        <div style="margin-top: 2.5rem;">
+          <a href="https://wa.me/12345678900?text=Hey%20Black%26Gold%2C%20I%20need%20a%20quote%20for%20my%20car%20service" 
+             class="btn-wa" target="_blank">
+            <i class="fab fa-whatsapp"></i> MESSAGE VIA WHATSAPP
+          </a>
+        </div>
+      </div>
+      <div style="flex:1; background: #1e1e1e; border-radius: 40px; padding: 2rem; border: 1px solid #53441f;">
+        <i class="fas fa-gem" style="color: #D4AF37; font-size: 3rem;"></i>
+        <p style="color: #D4AF37; margin-top: 1rem;">“reply within 3 min on gold channel”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+      <div style="font-family: 'Cinzel'; color: #D4AF37;">BLACK&GOLD · ATELIER</div>
+      <div>© 2025 · PRESTIGE AUTO CARE</div>
+      <div>
+        <a href="#" style="color: #D4AF37; margin: 0 0.7rem;"><i class="fab fa-instagram"></i></a>
+        <a href="#" style="color: #D4AF37; margin: 0 0.7rem;"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" style="color: #D4AF37; margin: 0 0.7rem;"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- dummy indicator sync (just to make them clickable, optional) -->
+  <script>
+    // tiny script to make indicators "active" on click (visual)
+    const indicators = document.querySelectorAll('.indicator');
+    indicators.forEach((ind, idx) => {
+      ind.addEventListener('click', (e) => {
+        document.querySelectorAll('.indicator').forEach(dot => dot.classList.remove('active'));
+        ind.classList.add('active');
+        // simple carousel jump (we use pure css autoplay, but for manual we'd need js. this keeps it clean.
+        // but we add a quick transform based on click: demonstration of intent
+        const slides = document.querySelector('.carousel-slides');
+        if (idx === 0) slides.style.transform = 'translateX(0)';
+        else if (idx === 1) slides.style.transform = 'translateX(-33.333%)';
+        else if (idx === 2) slides.style.transform = 'translateX(-66.666%)';
+        // remove transition after manual to keep auto later? we just let it, but user might override animation.
+        // keep smooth.
+      });
+    });
+  </script>
+</body>
+</html>
